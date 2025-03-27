@@ -1,4 +1,4 @@
-.item {
+.items {
   display: flex;
   color: #fff;
   gap: 40px;
@@ -21,11 +21,11 @@
     right: 0;
     bottom: 0;
     background-color: var(--color-bg-painted);
-    color: var(--color-bg-unpainted);
-    padding: 24px;
+    color: var(--color-text-unpainted);
+    padding: 24px 16px;
   }
 
-  .item {
+  .items {
     flex-direction: column;
     gap: 24px;
   }
@@ -35,5 +35,11 @@
     background: none;
     border: none;
     cursor: pointer;
+  }
+
+  .close {
+    position: absolute;
+    top: 24px;
+    right: 16px;
   }
 }
