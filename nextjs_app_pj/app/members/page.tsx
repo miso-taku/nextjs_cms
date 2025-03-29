@@ -1,42 +1,9 @@
 import Image from "next/image";
+import { getMembersList } from "@/app/_libs/microcms";
 import styles from "./page.module.css";
 
-const data = {
-  contents: [
-    {
-      id: "1",
-      image: {
-        url: "/SU_METAL.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "SU-METAL",
-      position: "ボーカル&ダンス",
-    },
-    {
-      id: "2",
-      image: {
-        url: "/MOA_METAL.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "MOA METAL",
-      position: "スクリーム&ダンス",
-    },
-    {
-      id: "3",
-      image: {
-        url: "/MOMO_METAL.jpg",
-        width: 240,
-        height: 240,
-      },
-      name: "MOMO METAL",
-      position: "スクリーム&ダンス",
-    },
-  ],
-};
-
-export default function Page() {
+export default async function Page() {
+  const data = await getMembersList();
   return (
     <div className={styles.container}>
       {data.contents.length === 0 ? (
