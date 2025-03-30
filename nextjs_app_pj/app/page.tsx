@@ -1,47 +1,12 @@
 import styles from "./page.module.css";
 import Image from "next/image";
-
+import { getNewsList } from "@/app/_libs/microcms";
+import { NEWS_LIST_LIMIT } from "@/app/_components";
 import NewsList from "@/app/_components/NewsList";
 import ButtonLink from "@/app/_components/ButtonLink";
-import { News } from "@/app/_libs/microcms";
 
-const date: {
-  constents: News[];
-} = {
-  constents: [
-    {
-      id: "1",
-      title:
-        "「BABYMETAL NORTH AMERICA 2025 TOUR」サンフランシスコ公演の追加開催決定!!",
-      category: {
-        name: "更新情報",
-      },
-      publishedAt: "2025/03/20",
-      createdAt: "2025/03/20",
-    },
-    {
-      id: "2",
-      title: "「BABYMETAL NORTH AMERICA 2025 TOUR」開催決定!!",
-      category: {
-        name: "更新情報",
-      },
-      publishedAt: "2025/03/18",
-      createdAt: "2025/03/18",
-    },
-    {
-      id: "3",
-      title: "「THE ONE」先行登録開始!! THE ONE TEE 2025 先行販売開始!!",
-      category: {
-        name: "更新情報",
-      },
-      publishedAt: "2025/03/17",
-      createdAt: "2025/03/17",
-    },
-  ],
-};
-
-export default function Home() {
-  const sliceData = date.constents.slice(0, 2);
+export default async function Home() {
+  const data = await getNewsList({ limit: NEWS_LIST_LIMIT });
 
   return (
     <>
@@ -62,7 +27,7 @@ export default function Home() {
       </section>
       <section className={styles.news}>
         <h2 className={styles.newsTitle}>News</h2>
-        <NewsList news={date.constents} />
+        <NewsList news={data.contents} />
         <div className={styles.newsLink}>
           <ButtonLink href="/news">もっとみる</ButtonLink>
         </div>
